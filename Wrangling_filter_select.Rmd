@@ -237,15 +237,21 @@ movies %>%
 
 Often there are a lot of missing values, or `NA`s, in the budget variable. This is another characteristic of real data, and one that we often need to deal with. The function, `is.na()` is useful here. `is.na()` will identify all of the missing values and evaluates automatically as a TRUE/FALSE for each row, which eliminates the need to use any logical symbols.
 
+# Alter the code above to subset all of the movies where we do have budget information.
+
+
 ```{r}
 movies %>%
   filter(is.na(budget))
-
-# Alter the code above to subset all of the movies where we do have budget information.
+```
 
 # Another, simpler way to do this specific filter is with the drop_na() function
 movies %>%
   drop_na(budget)
+
+```{r}
+movies %>%
+  filter(!is.na(budget))
 ```
 
 It is also nice to save your subset data for use later in your analysis. Notice that each time we ran the code above, R just showed us the data, it did not save it anywhere. Creating a new object allows us to refer back to that filtered/selected data later.
@@ -259,6 +265,11 @@ movies_modern <- movies %>%    # Remember that '<-' assigns a new object. Preser
 # But really, you didn't ask R to show anything, just to save something
 # ask for movies_2000 to make sure it worked
 movies_modern
+```
+
+# Show the first 6 rows to verify
+```{r}
+head(movies_modern)
 ```
 
 
