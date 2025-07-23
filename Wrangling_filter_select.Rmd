@@ -228,6 +228,10 @@ movies %>%
 
 # I want only movies with an MPAA rating over PG (there are no G movies). Hint: think about what you don't want and double check to see the filter completely worked.
 
+```{r}
+movies %>%
+  filter(mpaa %in% c("PG-13", "R", "NC-17")) %>%
+  summarise(count = n())
 ```
 
 
