@@ -306,7 +306,7 @@ Alright, there are countless ways we can create subsets of our data to better su
 
 ```{r}
 movies %>%
-  select(title, year, rating)    # multiple argument values are separated by a comma
+  select(title, year, rating)
 ```
 
 
