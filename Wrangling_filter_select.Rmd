@@ -14,16 +14,58 @@ We need to load libraries and read the data into R first.
 library(tidyverse)
 library(ggplot2movies)
 library(ggformula)
+library(dplyr)
+library(mosaicData)
+```
+
+
 
 # This loads the data from the ggplot2movies package
+
+```{r}
 data(movies)
 ```
 
 
-It's always a good idea to do some recon work first. What do the data look like? How many observations and variables do we have? What are the variable names?
+```{r}
+names(movies)
+```
+
+```{r}
+head(movies)
+```
+```{r}
+summary(movies)
+```
+
 
 
 ```{r}
+high_rated <- select(movies , rating = 8)
+```
+
+```{r}
+selected_data <- select(movies, title, rating)
+```
+
+
+
+
+
+
+
+
+
+
+
+It's always a good idea to do some recon work first. What do the data look like? How many observations and variables do we have? What are the variable names?
+
+```{r}
+str(movies)
+```
+
+
+  
 # View() opens the data in another window. 'head(movies)' will show the first few rows.
 #View(movies)
 
@@ -32,6 +74,17 @@ It's always a good idea to do some recon work first. What do the data look like?
 
 dim(movies)     # always rows x columns
 names(movies)   # a good way to keep track of variable names for later use
+
+
+
+```{r}
+dim(movies)
+```
+
+
+
+```{r}
+names(movies)
 ```
 
 
@@ -41,19 +94,81 @@ Now that we have a sense of our data, we can start to dig a little deeper into t
 
 - What is the average movie rating?
 
+```{r}
+mean(movies$rating, na.rm = TRUE)
+```
+
+
 - What is the median budget for a movie?
+
+```{r}
+median(movies$budget, na.rm = TRUE)
+```
 
 But after looking at all of the movies recorded here, the more precise questions might turn out to be:
 
 - What is the average rating *of movies longer than 60 minutes?*
 
+```{r}
+library(dplyr)
+library(mosaicData)
+```
+
+
+```{r}
+movies %>%
+  filter(length == 68) %>%
+  summarise(avg_rating = mean(rating, na.rm = TRUE))
+```
+```{r}
+movies %>%
+  filter(length == 68) %>%
+  summarise(avg_rating = mean(rating, na.rm = TRUE))
+```
+
+
+                                
+
 - What is the median budget *of animated films compared to documentaries?*
+
+```{r}
+movies %>%
+  filter(Animation == 1 | Documentary == 1) %>%
+  mutate(type = case_when(
+    Animation == 1 ~ "Animation",
+    Documentary == 1 ~ "Documentary"
+  )) %>%
+  group_by(type) %>%
+  summarise(median_budget = median(budget, na.rm = TRUE))
+```
 
 We often find that the whole data frame is not necessary or even helpful to answer our questions. We need to simplify the data in certain ways. Since there are only two dimensions to a data frame like this, we will discuss two ways of reduction:
 
 - `filter()` to reduce the number of observations/rows
 
+```{r}
+library(dplyr)
+filtered_data <- movies %>%
+  filter(year > 2000)
+```
+
+
 - `select()` to reduce the number of variables/columns
+
+
+```{r}
+selected_data <- movies %>%
+  select(title, year, rating)
+```
+
+```{r}
+simple_data <- movies %>%
+  filter(year > 2000, rating >= 8) %>%
+  select(title, year, rating)
+```
+
+
+
 
 
 ### Filtering - Review
