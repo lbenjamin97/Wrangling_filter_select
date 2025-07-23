@@ -157,6 +157,12 @@ filtered_data <- movies %>%
 
 
 ```{r}
+movies %>%
+  filter(length == 68) %>%
+  summarise(avg_rating = mean(rating, na.rm = TRUE))
+```
+
+```{r}
 selected_data <- movies %>%
   select(title, year, rating)
 ```
