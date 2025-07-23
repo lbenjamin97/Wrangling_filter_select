@@ -370,10 +370,26 @@ movies_2000 %>%
 ```
 
 # You can include multiple arrangements in the same function
+
 movies_2000 %>%
   arrange(rating, desc(budget))  # these are the lowest rated movies arranged by largest budget
 
+
+```{r}
+movies_2000 %>%
+  arrange(rating, desc(budget))
+```
+
 # Using the original 'movies' data, what is the longest movie? What is the oldest movie?
+
+
+```{r}
+movies %>%
+drop_na(length) %>%
+arrange(desc(length)) %>%
+select(title, year, length) %>%
+head(1)
+```
 ```
 
 
