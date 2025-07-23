@@ -216,8 +216,15 @@ movies %>%
   summarise(count = n())
 ```
 
-
 # How many PG-13 movies are in this dataset? Remember to use quotations ("") when filtering characters/strings
+
+```{r}
+movies %>%
+  filter(mpaa == "PG-13") %>%
+  summarise(count = n())
+
+
+```
 
 # I want only movies with an MPAA rating over PG (there are no G movies). Hint: think about what you don't want and double check to see the filter completely worked.
 
