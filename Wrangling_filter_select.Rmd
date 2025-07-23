@@ -322,15 +322,11 @@ movies %>%
 `starts_with()`, `ends_with()`, `contains()`, `matches()`, `num_range()` can all grab multiple variables at once.
 
 ```{r}
-movies %>%
-  select(!starts_with("r"))      # this will select any variable that does not start with 'r'
-
-# Unfortunately that means 'ratings' is also dropped. Here's a better way:
-movies %>%
-  select(!num_range("r", 1:10))  # now we drop any variable starting with prefix 'r' and numeric suffix from 1-10 
+library(dplyr)
+movies_clean <- movies %>%
+select(!num_range("r", 1:10))
+head(movies_clean)
 ```
-
-
 Filtering and variable selection can happen in the same pipe. Give me the title, rating, and budget for all action movies 2000 or later, with known budget.
 
 ```{r eval=FALSE}
