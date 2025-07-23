@@ -352,15 +352,21 @@ movies_2000
 
 Let's create a new data subset of action movies with a budget since 2000.
 
-
+```{r}
+movies_2000 <- movies %>%
+filter(year >= 2000 & Action == 1) %>%
+drop_na(budget) %>%
+select(title, rating, budget)
 ```
+
 
 You'll learn some more summarizing techniques later, but I want to show one more useful verb: `arrange()`. This function allows you to sort columns by ascending and descending order. What movies in `movies_2000` have the highest budget?
 
 
 ```{r}
 movies_2000 %>%
-arrange(desc(rating))
+  arrange(desc(rating)) %>%
+  head(10)    # Show top 10 highest rated action movies
 ```
 
 # You can include multiple arrangements in the same function
