@@ -203,6 +203,16 @@ movies %>%
 
 # How many movies since 1965 have a run-time greater than 60 minutes?
 
+```{r}
+movies %>%
+  filter(year >= 1965, length > 60) %>%
+  summarise(count = n())
+```
+
+
+
+
+
 # Show all movies with more than 500 votes and an average rating of at least 9
 
 # How many PG-13 movies are in this dataset? Remember to use quotations ("") when filtering characters/strings
