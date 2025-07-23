@@ -280,7 +280,7 @@ One more useful way to filter a character variable is to base it on part of the 
 ```{r}
 movies %>%
   filter(str_detect(title, "Godzilla"))
-
+```
 # Which Batman movies are in the dataset?
 ```
 
