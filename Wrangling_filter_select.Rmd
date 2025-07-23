@@ -314,7 +314,7 @@ Notice that there are a bunch of ratings percentiles (`r1`-`r10`) that I don't r
 
 ```{r}
 movies %>%
-  select(!c(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10))   # the function c() combines things and allows us to use the distributive property for '!'
+  select(!c(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10))
 ```
 
 > Advanced variable selection using partial variable names
