@@ -331,37 +331,37 @@ Filtering and variable selection can happen in the same pipe. Give me the title,
 
 ```{r eval=FALSE}
 movies %>%
-  filter(year >= 2000 & Action == 1) %>%
-  drop_na(budget) %>%
-  select(title, rating, budget)
-
-# Why doesn't the following code work?
-movies %>%
-  select(title, rating, budget) %>%
-  filter(year >= 2000) %>%
-  drop_na(budget)
+filter(year >= 2000 & Action == 1) %>%              
+select(title, rating, budget)
 ```
 
 
 ## Arrange
 
-Let's create a new data subset of action movies with a budget since 2000.
-
 
 ```{r}
 movies_2000 <- movies %>%    
-  filter(year >= 2000 & Action == 1) %>%
-  drop_na(budget) %>%
-  select(title, rating, budget)
-
+filter(year >= 2000 & Action == 1) %>%
+drop_na(budget) %>%
+select(title, rating, budget)
 movies_2000
+```
+
+
+
+
+Let's create a new data subset of action movies with a budget since 2000.
+
+
 ```
 
 You'll learn some more summarizing techniques later, but I want to show one more useful verb: `arrange()`. This function allows you to sort columns by ascending and descending order. What movies in `movies_2000` have the highest budget?
 
+
 ```{r}
 movies_2000 %>%
-  arrange(desc(budget))          # default is to arrange in ascending order, but desc() reverses it
+arrange(desc(rating))
+```
 
 # You can include multiple arrangements in the same function
 movies_2000 %>%
