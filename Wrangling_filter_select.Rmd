@@ -427,13 +427,27 @@ movies %>%
   filter(year == 1995) %>%
   summarise(count = n())
 ```
-it was 1 movie released in 1995 in the movies data
+it was 1 movie released in 1995 in the movies data.
 
 2. Which Comedies with an MPAA rating, over 120 minutes have a rating above 8?
 
 ```{r}
+library(dplyr)
+library(stringr)
+
+colnames(movies)
+```
+```{r}
+str(movies)
+```
+```{r}
+movies %>%
+  arrange(desc(budget)) %>%
+  select(title, year, budget)
 
 ```
+these are the movies with the highest budgets
+
 
 3. Create a subset of only Harry Potter movies with the title, rating, budget, and votes. Which movies are included in this data? Which is highest rated? Which has the most votes on imdb.com?
 
