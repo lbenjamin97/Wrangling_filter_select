@@ -162,7 +162,9 @@ simple_data <- movies %>%
 
 
 
-
+```{r}
+colnames(movies)
+```
 
 ### Filtering - Review
 
@@ -386,12 +388,10 @@ arrange(desc(length)) %>%
 select(title, year, length) %>%
 head(1)
 ```
-```
-
 ```{r}
+movies %>%
+  filter(str_detect(title, "Harry Potter"))  # filters rows where 'title' contains "Harry Potter"
 ```
-
-
 
 ## Scavenger Hunt
 
@@ -399,10 +399,35 @@ See if you can answer these questions:
 
 1. How many movies were released in 1995?
 
+# Load required libraries
 ```{r}
+library(dplyr)
+
+movies %>%
+  filter(year == 1995) %>%
+  summarise(count = n())
 
 ```
+# Check column names and sample data (including year)
+```{r}
+colnames(movies)
+head(movies$year, 20)  # shows first 20 year values
 
+# Count how many unique years there are
+length(unique(movies$year))
+
+# See distribution of years
+table(movies$year)
+```
+
+
+# Count how many movies were released in 1995
+```{r}
+movies %>%
+  filter(year == 1995) %>%
+  summarise(count = n())
+```
+it was 1 movie released in 1995 in the movies data
 
 2. Which Comedies with an MPAA rating, over 120 minutes have a rating above 8?
 
