@@ -47,24 +47,11 @@ high_rated <- select(movies , rating = 8)
 ```{r}
 selected_data <- select(movies, title, rating)
 ```
-
-
-
-
-
-
-
-
-
-
-
 It's always a good idea to do some recon work first. What do the data look like? How many observations and variables do we have? What are the variable names?
 
 ```{r}
 str(movies)
 ```
-
-
   
 # View() opens the data in another window. 'head(movies)' will show the first few rows.
 #View(movies)
@@ -275,11 +262,20 @@ head(movies_modern)
 
 One more useful way to filter a character variable is to base it on part of the value, or a string subset. You can use `str_detect()` for this. To use this function, just add the variable name and words or partial word you would like to detect.
 
-- `str_detect(variable_name, "Word to filter")`
+
+library(dplyr)
+library(stringr)  # str_detect() is from this package
+```{r}
+movies %>%
+  filter(str_detect(title, "Harry Potter"))  # filters rows where 'title' contains "Harry Potter"
+```
 
 ```{r}
 library(stringr)
 
+```
+```{r}
+library(dplyr)
 ```
 
 ```{r}
@@ -392,6 +388,9 @@ head(1)
 ```
 ```
 
+```{r}
+```
+
 
 
 ## Scavenger Hunt
@@ -403,6 +402,7 @@ See if you can answer these questions:
 ```{r}
 
 ```
+
 
 2. Which Comedies with an MPAA rating, over 120 minutes have a rating above 8?
 
