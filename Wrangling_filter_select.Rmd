@@ -450,27 +450,66 @@ these are the movies with the highest budgets
 
 
 3. Create a subset of only Harry Potter movies with the title, rating, budget, and votes. Which movies are included in this data? Which is highest rated? Which has the most votes on imdb.com?
-
 ```{r}
+library(rvest)
+
+# Define the URL for the IMDb page of a Harry Potter movie
+url <- "https://www.imdb.com/title/tt1201607/"  # Example: Harry Potter and the Deathly Hallows: Part 2
+
+# Read the HTML content of the page
+page <- read_html(url)
+
+# Extract the IMDb rating and vote count
+rating <- page %>%
+  html_nodes("span[itemprop='ratingValue']") %>%
+  html_text()
+
+votes <- page %>%
+  html_nodes("span[itemprop='ratingCount']") %>%
+  html_text()
+
+# Print the extracted information
+cat("IMDb Rating:", rating, "\n")
+cat("Vote Count:", votes, "\n")
+```
+```{r}
+library(dplyr)
+library(stringr)
+
+harry_potter_movies <- movies %>%
+  filter(str_detect(title, "Harry Potter")) %>%
+  select(title, rating, budget)
+
+harry_potter_movies
 
 ```
 
 4. What is the highest budget for a movie that is an Animation or Comedy with at least 100 votes?
+```{r}
+colnames(movies)
+
+
+```
+```{r}
+"Animation|Comedy|Family"
+"Action|Thriller"
+"Drama"
+"Comedy|Romance"
+```
 
 ```{r}
+library(dplyr)
+library(stringr)
+```
+
+
+
+
+```{r}
+colnames(movies)
+head(movies, 5)
 
 ```
 
 5. Is your favorite movie in the dataset? What other questions could you ask or answer using `filter()`, `select()`, and `arrange()`?
-
-```{r}
-
-```
-
-
-
-
-
-
-
 
